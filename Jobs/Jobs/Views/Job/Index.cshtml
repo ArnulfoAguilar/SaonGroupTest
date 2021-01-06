@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Jobs.Core.Dtos.Entities.Job>
 @{
+    ViewData["Title"] = "Index";
 }
+
+<h1>@ViewBag.Title</h1>
+<a class="btn btn-primary float-lg-right" href ="~/Job/Add/">Add</a>
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">JobID</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">Job Description</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Expires At</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var job in Model)
+        {
+            <tr>
+                <th scope="row">@job.JobID</th>
+                <td>@job.JobTitle</td>
+                <td>@job.JobDescription</td>
+                <td>@job.CreatedAt</td>
+                <td>@job.ExpiresAt</td>
+                <td>
+                    <a class="btn btn-info" href ="~/Job/Edit/@job.JobID">Edit</a>
+                    <a class="btn btn-danger" href ="~/Job/Delete/@job.JobID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

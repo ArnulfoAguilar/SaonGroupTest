@@ -9,5 +9,7 @@ namespace Jobs.Core.Interfaces
     public interface IJobService
     {
         JobResponse JobsList();
+        ResponseStatus Add(Job job);
+        Job Edit(int JobID);
     }
 }

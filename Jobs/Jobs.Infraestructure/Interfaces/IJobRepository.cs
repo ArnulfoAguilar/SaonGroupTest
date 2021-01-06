@@ -11,6 +11,7 @@ namespace Jobs.Infraestructure.Interfaces
         public JobResponse JobsList();
         public ResponseStatus JobAdd(Job job);
         public ResponseStatus JobEdit(Job job);
+        public Job JobEditGet(int job);
         public ResponseStatus JobDelete(int JobID);
 
     }
