@@ -1,3 +1,4 @@
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Jobs.Core.Interfaces;
+using Jobs.Core.Services;
+using Autofac.Extensions.DependencyInjection;
+using Jobs.Infraestructure.Interfaces;
+using Jobs.Infraestructure.Repositorys;
+
 
 namespace Jobs
 {
@@ -24,7 +31,9 @@ namespace Jobs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            CreateDependencyInjection(services);
         }
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +61,17 @@ namespace Jobs
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+        public void CreateDependencyInjection(IServiceCollection services)
+        {
+            // create a Autofac container builder
+            var builder = new ContainerBuilder();
+
+            // read service collection to Autofac
+            builder.Populate(services);
+            //Services
+            builder.RegisterType<JobService>().As<IJobService>();
+            builder.RegisterType<JobRepository>().As<IJobRepository>();
         }
     }
 }

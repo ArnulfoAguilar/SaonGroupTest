@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Jobs.Core.Services
 {
-    class JobService : IJobService
+    public class JobService : IJobService
     {
     }
 }
