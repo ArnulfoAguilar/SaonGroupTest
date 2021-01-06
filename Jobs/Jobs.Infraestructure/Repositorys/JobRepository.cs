@@ -56,7 +56,36 @@ namespace Jobs.Infraestructure.Repositorys
 
         public ResponseStatus JobDelete(int JobID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        var insert = connection.CreateCommand();
+                        insert.CommandText = @"DELETE FROM JOBS WHERE JobID=" + JobID;
+                        insert.ExecuteNonQuery();
+                        transaction.Commit();
+                        connection.Close();
+                    }
+                }
+                ResponseStatus response = new ResponseStatus
+                {
+                    Code = HttpStatusCode.OK.ToString(),
+                    Description = "Job is deleted"
+                };
+                return response;
+            }
+            catch (Exception ex)
+            {
+                ResponseStatus response = new ResponseStatus
+                {
+                    Code = HttpStatusCode.BadRequest.ToString(),
+                    Description = "An error has occurred when y tried to delete a Job"
+                };
+                return response;
+            }
         }
 
         public ResponseStatus JobEdit(Job job)
@@ -70,7 +99,7 @@ namespace Jobs.Infraestructure.Repositorys
                     {
                         var insert = connection.CreateCommand();
                         insert.CommandText = @"UPDATE JOBS SET JobTitle='" + job.JobTitle + "',JobDescription='" + job.JobDescription +
-                            "',CreatedAt='" + job.CreatedAt + "',ExpiresAt='" + job.ExpiresAt + "') WHERE JobID=" + job.JobID;
+                            "',CreatedAt='" + job.CreatedAt + "',ExpiresAt='" + job.ExpiresAt + "' WHERE JobID=" + job.JobID;
                         insert.ExecuteNonQuery();
                         transaction.Commit();
                         connection.Close();
@@ -79,7 +108,7 @@ namespace Jobs.Infraestructure.Repositorys
                 ResponseStatus response = new ResponseStatus
                 {
                     Code = HttpStatusCode.OK.ToString(),
-                    Description = "Job is saved"
+                    Description = "Job is updated"
                 };
                 return response;
             }
@@ -88,7 +117,7 @@ namespace Jobs.Infraestructure.Repositorys
                 ResponseStatus response = new ResponseStatus
                 {
                     Code = HttpStatusCode.BadRequest.ToString(),
-                    Description = "An error has occurred when y tried to save a Job"
+                    Description = "An error has occurred when y tried to update a Job"
                 };
                 return response;
             }
@@ -106,7 +135,6 @@ namespace Jobs.Infraestructure.Repositorys
                     JobsList.CommandText = "SELECT * FROM JOBS Where JobID ="+job;
                     using (var reader = JobsList.ExecuteReader())
                     {
-
                         while (reader.Read())
                         {
                             JobEdit.JobID = reader.GetInt32(0);

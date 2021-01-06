@@ -44,11 +44,24 @@ namespace Jobs.Controllers
             return Redirect("~/Job/");
         }
 
-        [HttpGet]
-        public IActionResult Edit(int JobID)
+       
+        public IActionResult Edit(int id)
         {
-            var Job = _service.Edit(JobID);
-            return View();
+            var JobModel = _service.EditGet(id);
+            return View(JobModel);
+        }
+        [HttpPost]
+        public IActionResult Edit(Job JobModel)
+        {
+            var model = _service.Edit(JobModel);
+            return Redirect("~/Job/");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var model = _service.Delete(id);
+            return Redirect("~/Job/");
         }
 
     }

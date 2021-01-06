@@ -10,6 +10,9 @@ namespace Jobs.Core.Interfaces
     {
         JobResponse JobsList();
         ResponseStatus Add(Job job);
-        Job Edit(int JobID);
+        Job EditGet(int JobID);
+        ResponseStatus Edit(Job job);
+        ResponseStatus Delete(int JobID);
+
     }
 }
