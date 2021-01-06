@@ -8,10 +8,10 @@ namespace Jobs.Infraestructure.Interfaces
 {
     public interface IJobRepository
     {
-        public List<Job> JobsList();
+        public JobResponse JobsList();
         public ResponseStatus JobAdd(Job job);
         public ResponseStatus JobEdit(Job job);
-        public ResponseStatus JobDelete(Job job);
+        public ResponseStatus JobDelete(int JobID);
 
     }
 }

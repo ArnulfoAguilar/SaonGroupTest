@@ -16,6 +16,7 @@ namespace Jobs.Controllers
         }
         public IActionResult Index()
         {
+            TempData["Jobs"] = _service.JobsList().AllJobs;
             return View();
         }
     }

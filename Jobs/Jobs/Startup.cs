@@ -14,7 +14,7 @@ using Jobs.Core.Services;
 using Autofac.Extensions.DependencyInjection;
 using Jobs.Infraestructure.Interfaces;
 using Jobs.Infraestructure.Repositorys;
-
+using Jobs.Core;
 
 namespace Jobs
 {
@@ -31,7 +31,11 @@ namespace Jobs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            CreateDependencyInjection(services);
+
+            MappingConfig.Initialize();
+            services.AddTransient<IJobService, JobService>();
+            services.AddTransient<IJobRepository, JobRepository>();
+            
         }
         
 
@@ -62,16 +66,6 @@ namespace Jobs
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        public void CreateDependencyInjection(IServiceCollection services)
-        {
-            // create a Autofac container builder
-            var builder = new ContainerBuilder();
-
-            // read service collection to Autofac
-            builder.Populate(services);
-            //Services
-            builder.RegisterType<JobService>().As<IJobService>();
-            builder.RegisterType<JobRepository>().As<IJobRepository>();
-        }
+        
     }
 }
