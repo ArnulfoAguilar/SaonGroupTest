@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30626.31
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs", "Jobs\Jobs.csproj", "{721832A1-4D21-4223-9869-C763513CB737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobs", "Jobs\Jobs.csproj", "{721832A1-4D21-4223-9869-C763513CB737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.Core", "Jobs.Core\Jobs.Core.csproj", "{106B121D-05E8-4139-8808-928DF2FD3324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobs.Core", "Jobs.Core\Jobs.Core.csproj", "{106B121D-05E8-4139-8808-928DF2FD3324}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.Domain", "Jobs.Domain\Jobs.Domain.csproj", "{8979F0AB-5716-42B9-85CC-CDD1C8C7CAE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobs.Domain", "Jobs.Domain\Jobs.Domain.csproj", "{8979F0AB-5716-42B9-85CC-CDD1C8C7CAE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.Infraestructure", "Jobs.Infraestructure\Jobs.Infraestructure.csproj", "{B4CDA39E-6196-4B32-A251-7EC8B431BCC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jobs.Infraestructure", "Jobs.Infraestructure\Jobs.Infraestructure.csproj", "{B4CDA39E-6196-4B32-A251-7EC8B431BCC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.Test", "Jobs.Test\Jobs.Test.csproj", "{5518DD21-7395-4452-8A8F-1C4B244F92AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B4CDA39E-6196-4B32-A251-7EC8B431BCC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4CDA39E-6196-4B32-A251-7EC8B431BCC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4CDA39E-6196-4B32-A251-7EC8B431BCC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5518DD21-7395-4452-8A8F-1C4B244F92AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5518DD21-7395-4452-8A8F-1C4B244F92AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5518DD21-7395-4452-8A8F-1C4B244F92AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5518DD21-7395-4452-8A8F-1C4B244F92AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
